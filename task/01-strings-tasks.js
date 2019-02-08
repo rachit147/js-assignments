@@ -22,7 +22,7 @@
  *   '',  'bb'  => 'bb'
  */
 function concatenateStrings(value1, value2) {
-    throw new Error('Not implemented');
+    return value1.concat(value2);
 }
 
 
@@ -38,7 +38,7 @@ function concatenateStrings(value1, value2) {
  *   ''      => 0
  */
 function getStringLength(value) {
-    throw new Error('Not implemented');
+    return value.length;
 }
 
 /**
@@ -54,8 +54,10 @@ function getStringLength(value) {
  *   'John','Doe'      => 'Hello, John Doe!'
  *   'Chuck','Norris'  => 'Hello, Chuck Norris!'
  */
-function getStringFromTemplate(firstName, lastName) {
-    throw new Error('Not implemented');
+function getStringFromTemplate(firstName, lastName)
+{
+    return 'Hello, '+''+ firstName +' '+ lastName+'!';
+  
 }
 
 /**
@@ -69,7 +71,8 @@ function getStringFromTemplate(firstName, lastName) {
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
 function extractNameFromTemplate(value) {
-    throw new Error('Not implemented');
+    var stringLength=value.length-1;
+    return value.slice(7,stringLength);   
 }
 
 
@@ -84,8 +87,9 @@ function extractNameFromTemplate(value) {
  *   'cat'       => 'c'
  */
 function getFirstChar(value) {
-    throw new Error('Not implemented');
+    return value.charAt(0);
 }
+
 
 /**
  * Removes a leading and trailing whitespace characters from string.
@@ -99,6 +103,7 @@ function getFirstChar(value) {
  *   '\tHello, World! ' => 'Hello, World!'
  */
 function removeLeadingAndTrailingWhitespaces(value) {
+ 
     throw new Error('Not implemented');
 }
 
@@ -113,9 +118,10 @@ function removeLeadingAndTrailingWhitespaces(value) {
  *   'A', 5  => 'AAAAA'
  *   'cat', 3 => 'catcatcat'
  */
-function repeatString(value, count) {
-    throw new Error('Not implemented');
-}
+function repeatString(value, count)
+ {
+ return value.repeat(count);
+ }
 
 /**
  * Remove the first occurrence of string inside another string
@@ -160,7 +166,7 @@ function unbracketTag(str) {
  *  'abcdefghijklmnopqrstuvwxyz' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
  */
 function convertToUpperCase(str) {
-    throw new Error('Not implemented');
+return str.toUpperCase();
 }
 
 /**
@@ -174,7 +180,7 @@ function convertToUpperCase(str) {
  *   'info@gmail.com' => ['info@gmail.com']
  */
 function extractEmails(str) {
-    throw new Error('Not implemented');
+ return str.split(';');
 }
 
 /**
@@ -238,9 +244,13 @@ function encodeToRot13(str) {
  *   isString(new String('test')) => true
  */
 function isString(value) {
-    throw new Error('Not implemented');
+if(typeof value == 'string' || value instanceof String)
+    {
+return true;
 }
-
+else
+return false;
+}
 
 /**
  * Returns playid card id.
@@ -267,7 +277,29 @@ function isString(value) {
  *   'K♠' => 51
  */
 function getCardId(value) {
-    throw new Error('Not implemented');
+    var number = 0, result = 0;
+    if (value.charAt(value.length - 1) === '♣') {
+        number = 0;
+    } else if (value.charAt(value.length - 1) === '♦') {
+        number = 1;
+    } else if (value.charAt(value.length - 1) === '♥') {
+        number = 2;
+    } else {
+        number = 3;
+    }
+    if (value.charAt(0) == 'A') {
+        result = 0;
+    } else if (value.charAt(0) === 'J') {
+        result = 10;
+    }
+    else if (value.charAt(0) === 'Q') {
+        result = 11;
+    } else if (value.charAt(0) === 'K') {
+        result = 12;
+    } else {
+        result = Number(value.slice(0, -1)) - 1;
+    }
+    return result + (13 * number);
 }
 
 
